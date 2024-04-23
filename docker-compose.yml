@@ -1,0 +1,29 @@
+services:
+  php:
+    build: ./php
+    environment:
+      TZ: Asia/Tokyo
+    ports:
+      - 8080:80
+    volumes:
+      - type: bind
+        source: ./php/app
+        target: /var/www
+      - type: bind
+        source: ./php/crontab
+        target: /etc/cron.d/crontab
+        read_only: true
+
+  mysql:
+    image: container-registry.oracle.com/mysql/community-server:8.0
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_ROOT_HOST: "%"
+    volumes:
+      - type: volume
+        source: mysql-vol
+        target: /var/lib/mysql
+
+volumes:
+  mysql-vol:
