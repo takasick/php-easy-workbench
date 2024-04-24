@@ -15,7 +15,7 @@ services:
         read_only: true
 
   mysql:
-    image: container-registry.oracle.com/mysql/community-server:8.0
+    image: docker.io/library/mysql:8.0
     environment:
       TZ: Asia/Tokyo
       MYSQL_ALLOW_EMPTY_PASSWORD: true
