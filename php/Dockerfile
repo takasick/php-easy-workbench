@@ -15,7 +15,14 @@ RUN apt update \
     \
     && apt install -y libzip-dev libpng-dev libwebp-dev libjpeg62-turbo-dev libxpm-dev libfreetype-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp --with-xpm \
-    && docker-php-ext-install gd
+    && docker-php-ext-install gd \
+    \
+    && docker-php-ext-install bcmath \
+    \
+    && docker-php-ext-install exif \
+    \
+    && apt install -y libicu-dev \
+    && docker-php-ext-install intl
 
 # supervisor
 RUN { \
